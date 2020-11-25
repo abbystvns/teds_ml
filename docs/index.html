@@ -367,16 +367,16 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomabbystvnstedsmltree630bf777568875dfb7ab4af07269ae6078302918targetblank630bf77a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/abbystvns/teds_ml/tree/630bf777568875dfb7ab4af07269ae6078302918" target="_blank">630bf77</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomabbystvnstedsmltree630f9edddf616ba2eb910633de51a534ab788528targetblank630f9eda"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/abbystvns/teds_ml/tree/630f9edddf616ba2eb910633de51a534ab788528" target="_blank">630f9ed</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomabbystvnstedsmltree630bf777568875dfb7ab4af07269ae6078302918targetblank630bf77a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomabbystvnstedsmltree630f9edddf616ba2eb910633de51a534ab788528targetblank630f9eda" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/abbystvns/teds_ml/tree/630bf777568875dfb7ab4af07269ae6078302918" target="_blank">630bf77</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/abbystvns/teds_ml/tree/630f9edddf616ba2eb910633de51a534ab788528" target="_blank">630f9ed</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -387,8 +387,18 @@ Ignored files:
     Ignored:    analysis/.DS_Store
 
 Untracked files:
+    Untracked:  analysis/opioid_completion_2017_CV.Rmd
+    Untracked:  data/.ipynb_checkpoints/
+    Untracked:  data/TEDS-D-2007-DS0001-data-excel.tsv
+    Untracked:  data/clean_data.ipynb
+    Untracked:  data/teds4aequitas.csv
     Untracked:  data/tedsa_puf_2017.csv
     Untracked:  data/tedsd_puf_2017.csv
+    Untracked:  teds_predictions.csv
+
+Unstaged changes:
+    Modified:   analysis/feature_exploration.Rmd
+    Modified:   code/teds_utils.R
 
 </code></pre>
 <p>
@@ -427,6 +437,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/abbystvns/teds_ml/blob/630f9edddf616ba2eb910633de51a534ab788528/analysis/index.Rmd" target="_blank">630f9ed</a>
+</td>
+<td>
+Abby Stevens
+</td>
+<td>
+2020-11-25
+</td>
+<td>
+wflow_publish(c(“analysis/index.Rmd”, “analysis/opioid_completion_2017.Rmd”))
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/abbystvns/teds_ml/2998c452dc0f2b6975a3184ab458e9f58db5d90c/docs/index.html" target="_blank">2998c45</a>
+</td>
+<td>
+Abby Stevens
+</td>
+<td>
+2020-11-25
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -502,7 +546,24 @@ Start workflowr project.
 </div>
 </div>
 </div>
-<p>Exploratory analysis <a href="feature_Exploration.html">here</a>.</p>
+<div id="teds-datasets" class="section level1">
+<h1>TEDS Datasets</h1>
+<p>From the TEDS codebook: The Treatment Episode Data Set (TEDS) system serves as a repository of treatment data routinely collected by states for the purposes of monitoring their substance use treatment systems. It is comprised of selected data items from states’ administrative records that are converted to a standardized format which is consistent across all states. These standardized data constitute TEDS. The TEDS system is comprised of two major components: the admissions dataset (<a href="https://www.datafiles.samhsa.gov/study-series/treatment-episode-data-set-admissions-teds-nid13518">TEDS-A</a>) and the discharges dataset (<a href="https://www.datafiles.samhsa.gov/study-series/treatment-episode-data-set-discharges-teds-d-nid13520">TEDS-D</a>). Data for theTEDS-Admissions (TEDS-A) file were first reported in 1992, while data for the TEDS-D were first reported in 2000.</p>
+</div>
+<div id="experiments-on-teds-d-2017" class="section level1">
+<h1>Experiments on TEDS-D 2017</h1>
+<p>Initial analysis are performed on the <a href="https://www.datafiles.samhsa.gov/study-dataset/teds-d-2017-ds0001-teds-d-2017-ds0001-nid18480">2017 discharge dataset</a>. Refer to the <a href="https://wwwdasis.samhsa.gov/dasis2/teds_pubs/TEDS/Discharges/TEDS_D_2017/TEDSD-2017-C.pdf">codebook</a> for details.</p>
+<p>Each experiment has been separated into a different page - click on the experiment for details!</p>
+<div id="successful-completion-of-residential-opioid-treatment" class="section level2">
+<h2><a href="opioid_completion_2017.html">Successful completion of residential opioid treatment</a></h2>
+</div>
+<div id="dropped-out-or-facility-terminated-opioid-treatment" class="section level2">
+<h2>[Dropped out or facility terminated opioid treatment]</h2>
+</div>
+<div id="section" class="section level2">
+<h2></h2>
+</div>
+</div>
 
 
 <!-- Adjust MathJax settings so that all math formulae are shown using
