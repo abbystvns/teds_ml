@@ -1,0 +1,108 @@
+---
+title: "Successful completion of residential opioid treatment"
+author: "Abby Stevens"
+date: "2020-11-25"
+output: workflowr::wflow_html
+editor_options:
+  chunk_output_type: console
+---
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+knitr::opts_chunk$set(message = FALSE, warning = FALSE)
+
+library(tidyverse)
+library(tidymodels)
+library(pROC)
+library(vip)
+source('code/teds_utils.R')
+```
+
+
+## Experimental setting
+Refer to the [codebook](https://wwwdasis.samhsa.gov/dasis2/teds_pubs/TEDS/Discharges/TEDS_D_2017/TEDSD-2017-C.pdf) for variable descriptions.
+
+**Response**: Successful completion of short or long-term opioid treatment.
+**Features**: See `myvars` defined below.
+
+```{r read discharge dataset}
+mydata <- read.csv("data/tedsd_puf_2017.csv")
+# filter
+mydata <- mydata %>% filter(SUB1 %in% c(5,6,7), SERVICES %in% c(4,5))
+mydata$COMPLETED = ifelse(mydata$REASON==1, 1, 0) #create response variable
+
+myvars <- c("ROUTE1", "ALCFLG", "FREQ1", "FRSTUSE1", "IDU","COKEFLG", "BENZFLG", "PSYPROB", "HLTHINS", "PRIMPAY", "AGE", "GENDER", "LIVARAG", "DIVISION", "METHUSE", "NOPRIOR", "EDUC", "HERFLG","RACE","MARSTAT","PRIMINC","ETHNIC","ARRESTS_D")
+
+response = "COMPLETED"
+
+teds <- as.data.frame(lapply(mydata[myvars], factor))
+teds[, response] = mydata[, response]
+```
+
+## Exploratory analysis
+First, we check to see if our classes are balanced.
+
+```{r}
+table(teds[,response])
+```
+
+In this case it looks ok! Next, we can vizualize some (or all) of the relationships between the features and the response. Here we just look at 3 of the variables so it's less chaotic.
+
+```{r}
+sbs_response_plots(teds, c("DIVISION", "HLTHINS", "RACE"), response)
+```
+
+
+Next, split the data into training and testing sets, using 3/4 of the data for training and holding out 1/4 for testing.
+```{r}
+set.seed(123) #for replicability
+teds_split = initial_split(teds, prop=3/4)
+# extract training and testing sets
+teds_train <- training(teds_split)
+teds_test <- testing(teds_split)
+```
+
+
+## Logistic regression
+Now, we fit a logistic regression model on our training data. We display the coefficients as well as the predictive performance on the test data.
+```{r}
+fm <- as.formula(paste(response, "~ ."))
+
+lg = glm(fm, family=binomial, data=teds_train)
+summary(lg)
+
+test_prob = predict(lg, newdata = teds_test, type = "response")
+test_roc = roc(teds_test$COMPLETED ~ test_prob, plot = TRUE, print.auc = TRUE)
+```
+
+For this experiment, our baseline AUC using logistic regression is 0.69.
+
+## Random forest
+Next, we fit a random forest model to the same training data. We are just using the default parameterizations here; previous experimentation showed that there wasn't much variance across parameters, so I'm comfortable doing this for these experiments.
+```{r}
+rf <- teds_rf(teds, myvars, response)
+```
+
+The `rf_cv` object returned includes 4 things: the model specification, the test performance, and the test predictions. First we look at the test performance:
+
+```{r}
+rf$test_performance
+```
+
+In this case, we see that the AUC=0.742 on the test set, an improvement over the logistic regression. We can use the test predictions to generate the ROC curve:
+
+```{r}
+# plot roc cruve
+autoplot(roc_curve(rf$test_predictions, !!response, .pred_0))
+```
+
+
+Finally, we compute and visualize the feature importances.
+## Feature importance
+```{r}
+teds[,response] = as.factor(teds[[response]])
+final_model <- fit(rf$model, teds)
+
+final_model %>% 
+  pull_workflow_fit() %>% 
+  vip()
+```

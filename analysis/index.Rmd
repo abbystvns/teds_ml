@@ -8,4 +8,17 @@ editor_options:
   chunk_output_type: console
 ---
 
-Exploratory analysis [here](feature_Exploration.html).
+# TEDS Datasets
+From the TEDS codebook:
+The Treatment Episode Data Set (TEDS) system serves as a repository of treatment data routinely collected by states for the purposes of monitoring their substance use treatment systems. It is comprised of selected data items from states’ administrative records that are converted to a standardized format which is consistent across all states. These standardized data constitute TEDS.
+The TEDS system is comprised of two major components: the admissions dataset ([TEDS-A](https://www.datafiles.samhsa.gov/study-series/treatment-episode-data-set-admissions-teds-nid13518)) and the discharges dataset ([TEDS-D](https://www.datafiles.samhsa.gov/study-series/treatment-episode-data-set-discharges-teds-d-nid13520)). Data for theTEDS-Admissions (TEDS-A) file were first reported in 1992, while data for the TEDS-D were first reported in 2000.
+
+
+# Experiments on TEDS-D 2017
+Initial analysis are performed on the [2017 discharge dataset](https://www.datafiles.samhsa.gov/study-dataset/teds-d-2017-ds0001-teds-d-2017-ds0001-nid18480). Refer to the [codebook](https://wwwdasis.samhsa.gov/dasis2/teds_pubs/TEDS/Discharges/TEDS_D_2017/TEDSD-2017-C.pdf) for details.
+
+Each experiment has been separated into a different page - click on the experiment for details!
+
+## [Successful completion of residential opioid treatment](opioid_completion_2017.html)
+## [Dropped out or facility terminated opioid treatment]
+## 
