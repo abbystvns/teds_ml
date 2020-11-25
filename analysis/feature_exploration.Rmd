@@ -1,0 +1,37 @@
+---
+title: "feature_exploration"
+author: "Abby Stevens"
+date: "2020-11-24"
+output: workflowr::wflow_html
+editor_options:
+  chunk_output_type: console
+---
+
+## Introduction
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+knitr::opts_chunk$set(message = FALSE, warning = FALSE)
+
+library(tidyverse)
+source('code/teds_utils.R')
+```
+
+
+```{r read discharge dataset, echo=FALSE, message=FALSE, warning=FALSE}
+mydata <- read.csv("data/tedsd_puf_2017.csv")
+# filter
+mydata <- mydata %>% filter(SUB1 %in% c(5,6,7), SERVICES %in% c(4,5))
+mydata$COMPLETED = ifelse(mydata$REASON==1, 1, 0) #create response variable
+
+myvars <- c("ROUTE1", "ALCFLG", "FREQ1", "FRSTUSE1", "IDU","COKEFLG", "BENZFLG", "PSYPROB", "HLTHINS", "PRIMPAY", "AGE", "GENDER", "LIVARAG", "DIVISION", "METHUSE", "NOPRIOR", "EDUC", "HERFLG","RACE","MARSTAT","PRIMINC","ETHNIC","ARRESTS_D")
+
+response = "COMPLETED"
+
+teds <- as.data.frame(lapply(mydata[myvars], factor))
+teds[, response] = mydata[, response]
+```
+
+
+```{r message=FALSE, warning=FALSE}
+feature_plots(teds, myvars, response)
+```

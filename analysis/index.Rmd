@@ -1,5 +1,5 @@
 ---
-title: "Home"
+title: "TEDS ML"
 site: workflowr::wflow_site
 output:
   workflowr::wflow_html:
@@ -8,4 +8,4 @@ editor_options:
   chunk_output_type: console
 ---
 
-This is a fun website.
+Exploratory analysis [here](feature_Exploration.html).
