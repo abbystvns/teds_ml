@@ -13,7 +13,7 @@
 
 <meta name="date" content="2020-11-25" />
 
-<title>Successful completion of residential opioid treatment</title>
+<title>Dropped out or facility terminated from residential opioid treatment</title>
 
 <script src="site_libs/header-attrs-2.1/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
@@ -389,7 +389,7 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Successful completion of residential opioid treatment</h1>
+<h1 class="title toc-ignore">Dropped out or facility terminated from residential opioid treatment</h1>
 <h4 class="author">Abby Stevens</h4>
 <h4 class="date">2020-11-25</h4>
 
@@ -552,7 +552,7 @@ Note that any generated files, e.g. HTML, png, CSS, etc., are not included in t
 <div id="versions" class="tab-pane fade">
 
 <p>
-These are the previous versions of the repository in which changes were made to the R Markdown (<code>analysis/opioid_completion_2017.Rmd</code>) and HTML (<code>docs/opioid_completion_2017.html</code>) files. If you’ve configured a remote Git repository (see <code>?wflow_git_remote</code>), click on the hyperlinks in the table below to view the files as they were in that past version.
+These are the previous versions of the repository in which changes were made to the R Markdown (<code>analysis/opioid_dropout_2017.Rmd</code>) and HTML (<code>docs/opioid_dropout_2017.html</code>) files. If you’ve configured a remote Git repository (see <code>?wflow_git_remote</code>), click on the hyperlinks in the table below to view the files as they were in that past version.
 </p>
 <div class="table-responsive">
 <table class="table table-condensed table-hover">
@@ -581,7 +581,7 @@ Message
 Rmd
 </td>
 <td>
-<a href="https://github.com/abbystvns/teds_ml/blob/9ec44077d6e89cd1c0eb333e907c8174a2b71979/analysis/opioid_completion_2017.Rmd" target="_blank">9ec4407</a>
+<a href="https://github.com/abbystvns/teds_ml/blob/9ec44077d6e89cd1c0eb333e907c8174a2b71979/analysis/opioid_dropout_2017.Rmd" target="_blank">9ec4407</a>
 </td>
 <td>
 Abby Stevens
@@ -591,40 +591,6 @@ Abby Stevens
 </td>
 <td>
 wflow_publish(c("analysis/*"))
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/abbystvns/teds_ml/38dade7c01961f732f727cf827bfa3cb98947a33/docs/opioid_completion_2017.html" target="_blank">38dade7</a>
-</td>
-<td>
-Abby Stevens
-</td>
-<td>
-2020-11-25
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/abbystvns/teds_ml/blob/630f9edddf616ba2eb910633de51a534ab788528/analysis/opioid_completion_2017.Rmd" target="_blank">630f9ed</a>
-</td>
-<td>
-Abby Stevens
-</td>
-<td>
-2020-11-25
-</td>
-<td>
-wflow_publish(c(“analysis/index.Rmd”, “analysis/opioid_completion_2017.Rmd”))
 </td>
 </tr>
 </tbody>
@@ -637,15 +603,16 @@ wflow_publish(c(“analysis/index.Rmd”, “analysis/opioid_completion_2017.Rmd
 <div id="experimental-setting" class="section level2">
 <h2>Experimental setting</h2>
 <p>Refer to the <a href="https://wwwdasis.samhsa.gov/dasis2/teds_pubs/TEDS/Discharges/TEDS_D_2017/TEDSD-2017-C.pdf">codebook</a> for variable descriptions.</p>
-<p><strong>Response</strong>: Successful completion of short or long-term opioid treatment. <strong>Features</strong>: See <code>myvars</code> defined below.</p>
+<p><strong>Response</strong>: Dropped out of or facility terminated short or long-term opioid treatment.</p>
+<p><strong>Features</strong>: See <code>myvars</code> defined below.</p>
 <pre class="r"><code>mydata &lt;- read.csv(&quot;data/tedsd_puf_2017.csv&quot;)
 # filter
 mydata &lt;- mydata %&gt;% filter(SUB1 %in% c(5,6,7), SERVICES %in% c(4,5))
-mydata$COMPLETED = ifelse(mydata$REASON==1, 1, 0) #create response variable
+mydata$dropout = ifelse(mydata$REASON %in% c(2,3), 1, 0) #create response variable
 
 myvars &lt;- c(&quot;ROUTE1&quot;, &quot;ALCFLG&quot;, &quot;FREQ1&quot;, &quot;FRSTUSE1&quot;, &quot;IDU&quot;,&quot;COKEFLG&quot;, &quot;BENZFLG&quot;, &quot;PSYPROB&quot;, &quot;HLTHINS&quot;, &quot;PRIMPAY&quot;, &quot;AGE&quot;, &quot;GENDER&quot;, &quot;LIVARAG&quot;, &quot;DIVISION&quot;, &quot;METHUSE&quot;, &quot;NOPRIOR&quot;, &quot;EDUC&quot;, &quot;HERFLG&quot;,&quot;RACE&quot;,&quot;MARSTAT&quot;,&quot;PRIMINC&quot;,&quot;ETHNIC&quot;,&quot;ARRESTS_D&quot;)
 
-response = &quot;COMPLETED&quot;
+response = &quot;dropout&quot;
 
 teds &lt;- as.data.frame(lapply(mydata[myvars], factor))
 teds[, response] = mydata[, response]</code></pre>
@@ -656,123 +623,10 @@ teds[, response] = mydata[, response]</code></pre>
 <pre class="r"><code>table(teds[,response])</code></pre>
 <pre><code>
     0     1 
-52681 46576 </code></pre>
-<p>In this case it looks ok! Next, we can vizualize some (or all) of the relationships between the features and the response. Here we just look at 3 of the variables so it’s less chaotic.</p>
+68845 30412 </code></pre>
+<p>Not perfect, but acceptable. Next, we can vizualize some (or all) of the relationships between the features and the response. Here we just look at 3 of the variables so it’s less chaotic.</p>
 <pre class="r"><code>sbs_response_plots(teds, c(&quot;DIVISION&quot;, &quot;HLTHINS&quot;, &quot;RACE&quot;), response)</code></pre>
-<p><img src="figure/opioid_completion_2017.Rmd/unnamed-chunk-3-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-3-1">
-Past versions of unnamed-chunk-3-1.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-3-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/abbystvns/teds_ml/blob/38dade7c01961f732f727cf827bfa3cb98947a33/docs/figure/opioid_completion_2017.Rmd/unnamed-chunk-3-1.png" target="_blank">38dade7</a>
-</td>
-<td>
-Abby Stevens
-</td>
-<td>
-2020-11-25
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<p><img src="figure/opioid_completion_2017.Rmd/unnamed-chunk-3-2.png" width="672" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-3-2">
-Past versions of unnamed-chunk-3-2.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-3-2" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/abbystvns/teds_ml/blob/38dade7c01961f732f727cf827bfa3cb98947a33/docs/figure/opioid_completion_2017.Rmd/unnamed-chunk-3-2.png" target="_blank">38dade7</a>
-</td>
-<td>
-Abby Stevens
-</td>
-<td>
-2020-11-25
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<p><img src="figure/opioid_completion_2017.Rmd/unnamed-chunk-3-3.png" width="672" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-3-3">
-Past versions of unnamed-chunk-3-3.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-3-3" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/abbystvns/teds_ml/blob/38dade7c01961f732f727cf827bfa3cb98947a33/docs/figure/opioid_completion_2017.Rmd/unnamed-chunk-3-3.png" target="_blank">38dade7</a>
-</td>
-<td>
-Abby Stevens
-</td>
-<td>
-2020-11-25
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
+<p><img src="figure/opioid_dropout_2017.Rmd/unnamed-chunk-3-1.png" width="672" style="display: block; margin: auto;" /><img src="figure/opioid_dropout_2017.Rmd/unnamed-chunk-3-2.png" width="672" style="display: block; margin: auto;" /><img src="figure/opioid_dropout_2017.Rmd/unnamed-chunk-3-3.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Next, split the data into training and testing sets, using 3/4 of the data for training and holding out 1/4 for testing.</p>
 <pre class="r"><code>set.seed(123) #for replicability
 teds_split = initial_split(teds, prop=3/4)
@@ -793,155 +647,118 @@ glm(formula = fm, family = binomial, data = teds_train)
 
 Deviance Residuals: 
     Min       1Q   Median       3Q      Max  
--2.2481  -1.1069  -0.3441   1.0646   2.8699  
+-2.7350  -0.8825  -0.6432   1.1889   2.9621  
 
 Coefficients:
              Estimate Std. Error z value Pr(&gt;|z|)    
-(Intercept) -0.074783   0.931428  -0.080 0.936008    
-ROUTE11     -0.055141   0.105335  -0.523 0.600639    
-ROUTE12      0.181537   0.106732   1.701 0.088968 .  
-ROUTE13     -0.007489   0.102332  -0.073 0.941657    
-ROUTE14     -0.015701   0.119079  -0.132 0.895097    
-ROUTE15     -0.411816   0.127211  -3.237 0.001207 ** 
-ALCFLG1      0.053109   0.022599   2.350 0.018769 *  
-FREQ11      -0.055183   0.035745  -1.544 0.122642    
-FREQ12      -0.168414   0.035906  -4.690 2.73e-06 ***
-FREQ13      -0.250480   0.031639  -7.917 2.44e-15 ***
-FRSTUSE11   -0.119320   0.135101  -0.883 0.377131    
-FRSTUSE12    0.031103   0.102975   0.302 0.762618    
-FRSTUSE13    0.074805   0.099221   0.754 0.450895    
-FRSTUSE14    0.125165   0.098702   1.268 0.204757    
-FRSTUSE15    0.106694   0.098816   1.080 0.280264    
-FRSTUSE16    0.111449   0.099223   1.123 0.261344    
-FRSTUSE17    0.155761   0.099578   1.564 0.117767    
-IDU0        -0.072757   0.030384  -2.395 0.016640 *  
-IDU1        -0.125724   0.065311  -1.925 0.054228 .  
-COKEFLG1    -0.082264   0.019123  -4.302 1.69e-05 ***
-BENZFLG1    -0.029707   0.024353  -1.220 0.222514    
-PSYPROB1    -0.641083   0.040120 -15.979  &lt; 2e-16 ***
-PSYPROB2    -0.628650   0.039396 -15.957  &lt; 2e-16 ***
-HLTHINS1     0.212887   0.075674   2.813 0.004905 ** 
-HLTHINS2    -0.195319   0.034398  -5.678 1.36e-08 ***
-HLTHINS3    -0.185328   0.054918  -3.375 0.000739 ***
-HLTHINS4    -0.130734   0.038239  -3.419 0.000629 ***
-PRIMPAY1    -0.055155   0.083990  -0.657 0.511383    
-PRIMPAY2     0.230260   0.091195   2.525 0.011572 *  
-PRIMPAY3    -0.226957   0.184827  -1.228 0.219468    
-PRIMPAY4    -0.469837   0.035679 -13.168  &lt; 2e-16 ***
-PRIMPAY5    -0.214725   0.035139  -6.111 9.92e-10 ***
-PRIMPAY6    -0.811757   0.101081  -8.031 9.69e-16 ***
-PRIMPAY7    -0.261398   0.062575  -4.177 2.95e-05 ***
-AGE2         0.539046   0.645089   0.836 0.403371    
-AGE3         0.423637   0.634427   0.668 0.504295    
-AGE4         0.486913   0.633153   0.769 0.441876    
-AGE5         0.540364   0.633054   0.854 0.393337    
-AGE6         0.524057   0.633133   0.828 0.407829    
-AGE7         0.568114   0.633315   0.897 0.369693    
-AGE8         0.564978   0.633680   0.892 0.372617    
-AGE9         0.690529   0.633807   1.089 0.275936    
-AGE10        0.769965   0.634065   1.214 0.224621    
-AGE11        0.929130   0.634220   1.465 0.142922    
-AGE12        0.794067   0.644433   1.232 0.217876    
-GENDER1     -0.288509   0.553430  -0.521 0.602151    
-GENDER2     -0.311933   0.553503  -0.564 0.573053    
-LIVARAG1    -0.121338   0.069404  -1.748 0.080417 .  
-LIVARAG2    -0.076452   0.069055  -1.107 0.268243    
-LIVARAG3    -0.006117   0.068245  -0.090 0.928580    
-DIVISION1   -0.104313   0.372718  -0.280 0.779575    
-DIVISION2   -0.051716   0.372737  -0.139 0.889651    
-DIVISION3   -1.113403   0.373578  -2.980 0.002879 ** 
-DIVISION4   -0.981440   0.373728  -2.626 0.008637 ** 
-DIVISION5   -1.237248   0.373655  -3.311 0.000929 ***
-DIVISION6   -0.858335   0.374672  -2.291 0.021970 *  
-DIVISION7   -0.606586   0.373348  -1.625 0.104223    
-DIVISION8   -0.268254   0.374761  -0.716 0.474115    
-DIVISION9   -0.379702   0.376227  -1.009 0.312861    
-METHUSE1    -0.484507   0.045088 -10.746  &lt; 2e-16 ***
-METHUSE2    -0.423246   0.041614 -10.171  &lt; 2e-16 ***
-NOPRIOR0    -1.019753   0.057863 -17.624  &lt; 2e-16 ***
-NOPRIOR1    -1.013856   0.056250 -18.024  &lt; 2e-16 ***
-EDUC1       -0.413502   0.081511  -5.073 3.92e-07 ***
-EDUC2       -0.175595   0.075354  -2.330 0.019793 *  
-EDUC3       -0.091853   0.073865  -1.244 0.213678    
-EDUC4       -0.010748   0.075030  -0.143 0.886093    
-EDUC5        0.012391   0.081728   0.152 0.879496    
-HERFLG1     -0.119606   0.030409  -3.933 8.38e-05 ***
-RACE1       -0.683595   0.278363  -2.456 0.014059 *  
-RACE2       -0.272081   0.098773  -2.755 0.005876 ** 
-RACE3        0.702415   1.417680   0.495 0.620270    
-RACE4       -0.272038   0.080008  -3.400 0.000674 ***
-RACE5       -0.084201   0.074608  -1.129 0.259079    
-RACE6        0.070537   0.133343   0.529 0.596814    
-RACE7       -0.276072   0.079745  -3.462 0.000536 ***
-RACE8       -0.331306   0.087294  -3.795 0.000147 ***
-RACE9       -0.502757   0.175647  -2.862 0.004206 ** 
-MARSTAT1    -0.049671   0.050663  -0.980 0.326880    
-MARSTAT2    -0.045467   0.057395  -0.792 0.428256    
-MARSTAT3    -0.098949   0.062144  -1.592 0.111325    
-MARSTAT4    -0.050040   0.056447  -0.886 0.375351    
-PRIMINC1     0.472276   0.039677  11.903  &lt; 2e-16 ***
-PRIMINC2     0.110477   0.043213   2.557 0.010571 *  
-PRIMINC3     0.070648   0.060011   1.177 0.239097    
-PRIMINC4     0.269031   0.038284   7.027 2.11e-12 ***
-PRIMINC5     0.189268   0.032582   5.809 6.29e-09 ***
-ETHNIC1      0.210828   0.064560   3.266 0.001092 ** 
-ETHNIC2      0.168143   0.073815   2.278 0.022732 *  
-ETHNIC3      0.314452   0.073952   4.252 2.12e-05 ***
-ETHNIC4      0.275674   0.052715   5.230 1.70e-07 ***
-ETHNIC5      0.129496   0.078746   1.644 0.100078    
-ARRESTS_D0   2.563898   0.067326  38.082  &lt; 2e-16 ***
-ARRESTS_D1   2.039389   0.078217  26.074  &lt; 2e-16 ***
-ARRESTS_D2   2.063834   0.112932  18.275  &lt; 2e-16 ***
+(Intercept)  2.313749   0.923380   2.506 0.012220 *  
+ROUTE11     -0.158430   0.116762  -1.357 0.174826    
+ROUTE12     -0.245120   0.119098  -2.058 0.039578 *  
+ROUTE13     -0.128985   0.113155  -1.140 0.254329    
+ROUTE14     -0.076909   0.131764  -0.584 0.559432    
+ROUTE15     -0.247887   0.144295  -1.718 0.085812 .  
+ALCFLG1     -0.034384   0.024003  -1.432 0.152009    
+FREQ11       0.075374   0.039742   1.897 0.057884 .  
+FREQ12       0.177063   0.039912   4.436 9.15e-06 ***
+FREQ13       0.299459   0.034547   8.668  &lt; 2e-16 ***
+FRSTUSE11   -0.049183   0.148282  -0.332 0.740129    
+FRSTUSE12   -0.087484   0.113353  -0.772 0.440245    
+FRSTUSE13   -0.046372   0.109510  -0.423 0.671964    
+FRSTUSE14   -0.118095   0.109033  -1.083 0.278760    
+FRSTUSE15   -0.113643   0.109163  -1.041 0.297858    
+FRSTUSE16   -0.141180   0.109624  -1.288 0.197798    
+FRSTUSE17   -0.110665   0.110040  -1.006 0.314571    
+IDU0        -0.040008   0.032254  -1.240 0.214819    
+IDU1        -0.074083   0.072350  -1.024 0.305856    
+COKEFLG1     0.129575   0.019814   6.540 6.16e-11 ***
+BENZFLG1     0.051875   0.025543   2.031 0.042266 *  
+PSYPROB1    -0.341762   0.043610  -7.837 4.62e-15 ***
+PSYPROB2    -0.323104   0.043051  -7.505 6.14e-14 ***
+HLTHINS1     0.256506   0.083234   3.082 0.002058 ** 
+HLTHINS2     0.372917   0.036396  10.246  &lt; 2e-16 ***
+HLTHINS3     0.116994   0.059741   1.958 0.050187 .  
+HLTHINS4     0.020996   0.041024   0.512 0.608796    
+PRIMPAY1    -0.419480   0.095024  -4.414 1.01e-05 ***
+PRIMPAY2    -0.879525   0.107823  -8.157 3.43e-16 ***
+PRIMPAY3    -0.301048   0.193367  -1.557 0.119501    
+PRIMPAY4    -0.238401   0.037487  -6.360 2.02e-10 ***
+PRIMPAY5    -0.431639   0.038228 -11.291  &lt; 2e-16 ***
+PRIMPAY6    -0.003165   0.092866  -0.034 0.972812    
+PRIMPAY7    -0.414861   0.071168  -5.829 5.57e-09 ***
+AGE2        -0.287316   0.600906  -0.478 0.632552    
+AGE3        -0.154782   0.589382  -0.263 0.792846    
+AGE4        -0.284879   0.587935  -0.485 0.628001    
+AGE5        -0.351094   0.587802  -0.597 0.550307    
+AGE6        -0.364662   0.587906  -0.620 0.535078    
+AGE7        -0.446021   0.588135  -0.758 0.448232    
+AGE8        -0.498584   0.588620  -0.847 0.396974    
+AGE9        -0.521971   0.588751  -0.887 0.375308    
+AGE10       -0.632940   0.589097  -1.074 0.282633    
+AGE11       -0.745611   0.589372  -1.265 0.205837    
+AGE12       -0.753129   0.603659  -1.248 0.212175    
+GENDER1     -0.823809   0.585484  -1.407 0.159411    
+GENDER2     -0.780729   0.585555  -1.333 0.182429    
+LIVARAG1     1.666139   0.077832  21.407  &lt; 2e-16 ***
+LIVARAG2     1.536806   0.077717  19.774  &lt; 2e-16 ***
+LIVARAG3     1.559633   0.076574  20.368  &lt; 2e-16 ***
+DIVISION1   -0.566613   0.370345  -1.530 0.126026    
+DIVISION2   -0.569544   0.370431  -1.538 0.124167    
+DIVISION3   -0.214771   0.371119  -0.579 0.562783    
+DIVISION4   -0.913727   0.371344  -2.461 0.013871 *  
+DIVISION5   -1.769920   0.371843  -4.760 1.94e-06 ***
+DIVISION6   -1.087117   0.373112  -2.914 0.003572 ** 
+DIVISION7   -0.310210   0.370888  -0.836 0.402931    
+DIVISION8   -0.536613   0.372864  -1.439 0.150104    
+DIVISION9   -1.805766   0.375515  -4.809 1.52e-06 ***
+METHUSE1     0.235917   0.049492   4.767 1.87e-06 ***
+METHUSE2     0.158407   0.046155   3.432 0.000599 ***
+NOPRIOR0    -0.408137   0.061956  -6.588 4.47e-11 ***
+NOPRIOR1    -0.206512   0.060064  -3.438 0.000586 ***
+EDUC1        0.127917   0.085488   1.496 0.134572    
+EDUC2        0.002863   0.079774   0.036 0.971369    
+EDUC3       -0.092426   0.078250  -1.181 0.237537    
+EDUC4       -0.209021   0.079591  -2.626 0.008635 ** 
+EDUC5       -0.215554   0.087584  -2.461 0.013851 *  
+HERFLG1      0.147256   0.033235   4.431 9.39e-06 ***
+RACE1        1.462008   0.278307   5.253 1.49e-07 ***
+RACE2        0.451959   0.106176   4.257 2.07e-05 ***
+RACE3       -7.316439  51.239094  -0.143 0.886456    
+RACE4        0.063610   0.087952   0.723 0.469532    
+RACE5       -0.129546   0.082758  -1.565 0.117497    
+RACE6       -0.295057   0.156892  -1.881 0.060021 .  
+RACE7       -0.073769   0.088008  -0.838 0.401909    
+RACE8        0.511813   0.094338   5.425 5.78e-08 ***
+RACE9        0.484284   0.185338   2.613 0.008976 ** 
+MARSTAT1    -0.065161   0.057872  -1.126 0.260187    
+MARSTAT2    -0.044083   0.064473  -0.684 0.494141    
+MARSTAT3    -0.065479   0.069430  -0.943 0.345631    
+MARSTAT4    -0.148302   0.063700  -2.328 0.019905 *  
+PRIMINC1     0.210894   0.043408   4.858 1.18e-06 ***
+PRIMINC2     0.451604   0.045562   9.912  &lt; 2e-16 ***
+PRIMINC3     0.459688   0.063297   7.262 3.80e-13 ***
+PRIMINC4     0.300424   0.041661   7.211 5.55e-13 ***
+PRIMINC5     0.443933   0.035501  12.505  &lt; 2e-16 ***
+ETHNIC1      0.377833   0.071599   5.277 1.31e-07 ***
+ETHNIC2     -0.047051   0.088563  -0.531 0.595229    
+ETHNIC3      0.312297   0.081254   3.843 0.000121 ***
+ETHNIC4      0.108809   0.060078   1.811 0.070121 .  
+ETHNIC5      0.200517   0.085409   2.348 0.018889 *  
+ARRESTS_D0  -2.782227   0.046328 -60.055  &lt; 2e-16 ***
+ARRESTS_D1  -2.692356   0.062308 -43.211  &lt; 2e-16 ***
+ARRESTS_D2  -2.379875   0.103701 -22.949  &lt; 2e-16 ***
 ---
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 
 (Dispersion parameter for binomial family taken to be 1)
 
-    Null deviance: 102873  on 74442  degrees of freedom
-Residual deviance:  92543  on 74348  degrees of freedom
-AIC: 92733
+    Null deviance: 91935  on 74442  degrees of freedom
+Residual deviance: 83410  on 74348  degrees of freedom
+AIC: 83600
 
-Number of Fisher Scoring iterations: 5</code></pre>
+Number of Fisher Scoring iterations: 8</code></pre>
 <pre class="r"><code>test_prob = predict(lg, newdata = teds_test, type = &quot;response&quot;)
-test_roc = roc(teds_test$COMPLETED ~ test_prob, plot = TRUE, print.auc = TRUE)</code></pre>
-<p><img src="figure/opioid_completion_2017.Rmd/unnamed-chunk-5-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-5-1">
-Past versions of unnamed-chunk-5-1.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-5-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/abbystvns/teds_ml/blob/38dade7c01961f732f727cf827bfa3cb98947a33/docs/figure/opioid_completion_2017.Rmd/unnamed-chunk-5-1.png" target="_blank">38dade7</a>
-</td>
-<td>
-Abby Stevens
-</td>
-<td>
-2020-11-25
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
+test_roc = roc(teds_test[,response] ~ test_prob, plot = TRUE, print.auc = TRUE)</code></pre>
+<p><img src="figure/opioid_dropout_2017.Rmd/unnamed-chunk-5-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>For this experiment, our baseline AUC using logistic regression is 0.69.</p>
 </div>
 <div id="random-forest" class="section level2">
@@ -953,49 +770,12 @@ Abby Stevens
 <pre><code># A tibble: 2 x 3
   .metric  .estimator .estimate
   &lt;chr&gt;    &lt;chr&gt;          &lt;dbl&gt;
-1 accuracy binary         0.675
-2 roc_auc  binary         0.741</code></pre>
-<p>In this case, we see that the AUC=0.742 on the test set, an improvement over the logistic regression. We can use the test predictions to generate the ROC curve:</p>
+1 accuracy binary         0.726
+2 roc_auc  binary         0.727</code></pre>
+<p>In this case, we see that the AUC=0.72 on the test set, an improvement over the logistic regression. We can use the test predictions to generate the ROC curve:</p>
 <pre class="r"><code># plot roc cruve
 autoplot(roc_curve(rf$test_predictions, !!response, .pred_0))</code></pre>
-<p><img src="figure/opioid_completion_2017.Rmd/unnamed-chunk-8-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-8-1">
-Past versions of unnamed-chunk-8-1.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-8-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/abbystvns/teds_ml/blob/38dade7c01961f732f727cf827bfa3cb98947a33/docs/figure/opioid_completion_2017.Rmd/unnamed-chunk-8-1.png" target="_blank">38dade7</a>
-</td>
-<td>
-Abby Stevens
-</td>
-<td>
-2020-11-25
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
+<p><img src="figure/opioid_dropout_2017.Rmd/unnamed-chunk-8-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Finally, we compute and visualize the feature importances.</p>
 </div>
 <div id="feature-importance" class="section level2">
@@ -1006,44 +786,7 @@ final_model &lt;- fit(rf$model, teds)
 final_model %&gt;% 
   pull_workflow_fit() %&gt;% 
   vip()</code></pre>
-<p><img src="figure/opioid_completion_2017.Rmd/unnamed-chunk-9-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-9-1">
-Past versions of unnamed-chunk-9-1.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-9-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/abbystvns/teds_ml/blob/38dade7c01961f732f727cf827bfa3cb98947a33/docs/figure/opioid_completion_2017.Rmd/unnamed-chunk-9-1.png" target="_blank">38dade7</a>
-</td>
-<td>
-Abby Stevens
-</td>
-<td>
-2020-11-25
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
+<p><img src="figure/opioid_dropout_2017.Rmd/unnamed-chunk-9-1.png" width="672" style="display: block; margin: auto;" /></p>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
