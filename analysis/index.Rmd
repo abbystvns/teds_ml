@@ -19,5 +19,16 @@ Initial analysis are performed on the [2017 discharge dataset](https://www.dataf
 
 Each experiment has been separated into a different page - click on the experiment for details!
 
-## [Successful completion of residential opioid treatment](opioid_completion_2017.html)
-## [Dropped out or facility terminated opioid treatment](opioid_dropout_2017.html)
+**Successful completion of residential treatment for:**
+
+- [All substances](tx_completion_2017.html)
+
+- [Opioids](opioid_completion_2017.html)
+- [Marijuana](mj_completion_2017.html)
+- [Alcohol](alc_completion_2017.html)
+- [Methamphetamine](meth_completion_2017.html)
+- [Cocaine](cocaine_completion_2017.html)
+
+
+- [Dropped out or facility terminated opioid treatment](opioid_dropout_2017.html)
+

@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Abby Stevens" />
+
+<meta name="date" content="2020-11-25" />
+
+<title>Successful completion of residential alcohol treatment</title>
+
+<script src="site_libs/header-attrs-2.1/header-attrs.js"></script>
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+<link rel="icon" href="https://github.com/workflowr/workflowr-assets/raw/master/img/reproducible.png">
+<!-- Add a small amount of space between sections. -->
+<style type="text/css">
+div.section {
+  padding-top: 12px;
+}
+</style>
+
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">teds_ml</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="about.html">About</a>
+</li>
+<li>
+  <a href="license.html">License</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/abbystvns/teds_ml">
+    <span class="fa fa-github"></span>
+     
+    Source code
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Successful completion of residential alcohol treatment</h1>
+<h4 class="author">Abby Stevens</h4>
+<h4 class="date">2020-11-25</h4>
+
+</div>
+
+
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
+<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span>
+</button>
+</p>
+<div id="workflowr-report" class="collapse">
+<ul class="nav nav-tabs">
+<li class="active">
+<a data-toggle="tab" href="#summary">Summary</a>
+</li>
+<li>
+<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> </a>
+</li>
+<li>
+<a data-toggle="tab" href="#versions">Past versions</a>
+</li>
+</ul>
+<div class="tab-content">
+<div id="summary" class="tab-pane fade in active">
+<p>
+<strong>Last updated:</strong> 2020-12-18
+</p>
+<p>
+<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 1
+</p>
+<p>
+<strong>Knit directory:</strong> <code>teds_ml/</code> <span class="glyphicon glyphicon-question-sign" aria-hidden="true" title="This is the local directory in which the code in this file was executed."> </span>
+</p>
+<p>
+This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis was created with <a
+  href="https://github.com/jdblischak/workflowr">workflowr</a> (version 1.6.2). The <em>Checks</em> tab describes the reproducibility checks that were applied when the results were created. The <em>Past versions</em> tab lists the development history.
+</p>
+<hr>
+</div>
+<div id="checks" class="tab-pane fade">
+<div id="workflowr-checks" class="panel-group">
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges"> <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted changes </a>
+</p>
+</div>
+<div id="strongRMarkdownfilestronguncommittedchanges" class="panel-collapse collapse">
+<div class="panel-body">
+<p>The R Markdown is untracked by Git. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongEnvironmentstrongempty"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Environment:</strong> empty </a>
+</p>
+</div>
+<div id="strongEnvironmentstrongempty" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! The global environment was empty. Objects defined in the global environment can affect the analysis in your R Markdown file in unknown ways. For reproduciblity it’s best to always run the code in an empty environment.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSeedstrongcodesetseed20201124code"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Seed:</strong> <code>set.seed(20201124)</code> </a>
+</p>
+</div>
+<div id="strongSeedstrongcodesetseed20201124code" class="panel-collapse collapse">
+<div class="panel-body">
+<p>The command <code>set.seed(20201124)</code> was run prior to running the code in the R Markdown file. Setting a seed ensures that any results that rely on randomness, e.g. subsampling or permutations, are reproducible.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSessioninformationstrongrecorded"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Session information:</strong> recorded </a>
+</p>
+</div>
+<div id="strongSessioninformationstrongrecorded" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Recording the operating system, R version, and package versions is critical for reproducibility.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongCachestrongnone"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Cache:</strong> none </a>
+</p>
+</div>
+<div id="strongCachestrongnone" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Nice! There were no cached chunks for this analysis, so you can be confident that you successfully produced the results during this run.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongFilepathsstrongrelative"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>File paths:</strong> relative </a>
+</p>
+</div>
+<div id="strongFilepathsstrongrelative" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Using relative paths to the files within your workflowr project makes it easier to run your code on other machines.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomabbystvnstedsmltreebe9f49210a66102ca5accb7c14c44475a1ad03aetargetblankbe9f492a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/abbystvns/teds_ml/tree/be9f49210a66102ca5accb7c14c44475a1ad03ae" target="_blank">be9f492</a> </a>
+</p>
+</div>
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomabbystvnstedsmltreebe9f49210a66102ca5accb7c14c44475a1ad03aetargetblankbe9f492a" class="panel-collapse collapse">
+<div class="panel-body">
+<p>
+Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
+</p>
+<p>
+The results in this page were generated with repository version <a href="https://github.com/abbystvns/teds_ml/tree/be9f49210a66102ca5accb7c14c44475a1ad03ae" target="_blank">be9f492</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+</p>
+<p>
+Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
+</p>
+<pre><code>
+Ignored files:
+    Ignored:    .DS_Store
+    Ignored:    .Rhistory
+    Ignored:    analysis/.DS_Store
+
+Untracked files:
+    Untracked:  analysis/alc_completion_2017.Rmd
+    Untracked:  analysis/cocaine_completion_2017.Rmd
+    Untracked:  analysis/meth_completion_2017.Rmd
+    Untracked:  analysis/mj_completion_2017.Rmd
+    Untracked:  analysis/opioid_completion_2017_medicaid.Rmd
+    Untracked:  analysis/tx_completion_2017.Rmd
+    Untracked:  analysis/tx_completion_2017_lg.Rmd
+    Untracked:  data/.ipynb_checkpoints/
+    Untracked:  data/TEDS-D-2007-DS0001-data-excel.tsv
+    Untracked:  data/clean_data.ipynb
+    Untracked:  data/expansion-status-interactive-map_10.1.20-2.csv
+    Untracked:  data/medicaid_expansion.csv
+    Untracked:  data/teds4aequitas.csv
+    Untracked:  data/tedsa_puf_2017.csv
+    Untracked:  data/tedsd_puf_2017.csv
+    Untracked:  output/teds_predictions.csv
+    Untracked:  tx_completion_2017.Rmd
+
+Unstaged changes:
+    Deleted:    analysis/feature_exploration.Rmd
+    Modified:   analysis/index.Rmd
+    Modified:   analysis/opioid_completion_2017.Rmd
+
+</code></pre>
+<p>
+Note that any generated files, e.g. HTML, png, CSS, etc., are not included in this status report because it is ok for generated content to have uncommitted changes.
+</p>
+</div>
+</div>
+</div>
+</div>
+<hr>
+</div>
+<div id="versions" class="tab-pane fade">
+<p>
+There are no past versions. Publish this analysis with <code>wflow_publish()</code> to start tracking its development.
+</p>
+<hr>
+</div>
+</div>
+</div>
+<div id="experimental-setting" class="section level2">
+<h2>Experimental setting</h2>
+<p>Refer to the <a href="https://wwwdasis.samhsa.gov/dasis2/teds_pubs/TEDS/Discharges/TEDS_D_2017/TEDSD-2017-C.pdf">codebook</a> for variable descriptions.</p>
+<p><strong>Response</strong>: Successful completion of short or long-term marijuana treatment <strong>Features</strong>: See <code>myvars</code> defined below.</p>
+<pre class="r"><code>mydata &lt;- read.csv(&quot;data/tedsd_puf_2017.csv&quot;)
+medexp &lt;- read.csv(&quot;data/medicaid_expansion.csv&quot;)
+# merge
+mydata &lt;- merge(mydata, medexp, by=&#39;STFIPS&#39;)
+
+# filter
+mydata &lt;- mydata %&gt;% filter(SUB1 == 2, SERVICES %in% c(4,5)) # marijuana
+mydata$COMPLETED = ifelse(mydata$REASON==1, 1, 0) #create response variable
+
+myvars &lt;- c(&quot;ROUTE1&quot;, &quot;FREQ1&quot;, &quot;FRSTUSE1&quot;, &quot;IDU&quot;,&quot;COKEFLG&quot;, &quot;BENZFLG&quot;, &quot;PSYPROB&quot;, &quot;HLTHINS&quot;, &quot;PRIMPAY&quot;, &quot;AGE&quot;, &quot;GENDER&quot;, &quot;LIVARAG&quot;, &quot;DIVISION&quot;, &quot;METHUSE&quot;, &quot;NOPRIOR&quot;, &quot;EDUC&quot;, &quot;HERFLG&quot;,&quot;RACE&quot;,&quot;MARSTAT&quot;,&quot;PRIMINC&quot;,&quot;ETHNIC&quot;,&quot;ARRESTS_D&quot;, &quot;SUB2&quot;, &quot;MEDEXP&quot;)
+
+response = &quot;COMPLETED&quot;
+
+teds &lt;- as.data.frame(lapply(mydata[myvars], factor))
+teds[, response] = mydata[, response]</code></pre>
+</div>
+<div id="exploratory-analysis" class="section level2">
+<h2>Exploratory analysis</h2>
+<p>First, we check to see if our classes are balanced.</p>
+<pre class="r"><code>table(teds[,response])</code></pre>
+<pre><code>
+    0     1 
+40088 55121 </code></pre>
+<p>In this case it looks ok! Next, we can vizualize some (or all) of the relationships between the features and the response. Here we just look at 3 of the variables so it’s less chaotic.</p>
+<pre class="r"><code>sbs_response_plots(teds, c(&quot;DIVISION&quot;, &quot;HLTHINS&quot;, &quot;RACE&quot;), response)</code></pre>
+<p><img src="figure/alc_completion_2017.Rmd/unnamed-chunk-3-1.png" width="672" style="display: block; margin: auto;" /><img src="figure/alc_completion_2017.Rmd/unnamed-chunk-3-2.png" width="672" style="display: block; margin: auto;" /><img src="figure/alc_completion_2017.Rmd/unnamed-chunk-3-3.png" width="672" style="display: block; margin: auto;" /></p>
+<p>Next, split the data into training and testing sets, using 3/4 of the data for training and holding out 1/4 for testing.</p>
+<pre class="r"><code>set.seed(123) #for replicability
+teds_split = initial_split(teds, prop=3/4)
+# extract training and testing sets
+teds_train &lt;- training(teds_split)
+teds_test &lt;- testing(teds_split)</code></pre>
+</div>
+<div id="logistic-regression" class="section level2">
+<h2>Logistic regression</h2>
+<p>Now, we fit a logistic regression model on our training data. We display the coefficients as well as the predictive performance on the test data.</p>
+<pre class="r"><code>fm &lt;- as.formula(paste(response, &quot;~ .&quot;))
+
+lg = glm(fm, family=binomial, data=teds_train)
+summary(lg)</code></pre>
+<pre><code>
+Call:
+glm(formula = fm, family = binomial, data = teds_train)
+
+Deviance Residuals: 
+    Min       1Q   Median       3Q      Max  
+-2.4882  -1.0441   0.6664   0.8938   3.0197  
+
+Coefficients:
+              Estimate Std. Error z value Pr(&gt;|z|)    
+(Intercept) -2.0628265  0.7005084  -2.945 0.003232 ** 
+ROUTE11      0.0149903  0.1188833   0.126 0.899659    
+ROUTE12     -0.2535309  0.2512304  -1.009 0.312899    
+ROUTE13      1.0874668  0.2542635   4.277 1.89e-05 ***
+ROUTE14     -0.0211616  0.3273175  -0.065 0.948451    
+ROUTE15     -0.4712682  0.4042410  -1.166 0.243691    
+FREQ11      -0.1325393  0.0393812  -3.366 0.000764 ***
+FREQ12      -0.0511184  0.0354341  -1.443 0.149124    
+FREQ13      -0.1125397  0.0336068  -3.349 0.000812 ***
+FRSTUSE11   -0.4021130  0.1010961  -3.978 6.96e-05 ***
+FRSTUSE12   -0.3024609  0.0992751  -3.047 0.002314 ** 
+FRSTUSE13   -0.2801286  0.0992056  -2.824 0.004747 ** 
+FRSTUSE14   -0.2502941  0.1007028  -2.485 0.012938 *  
+FRSTUSE15   -0.2583661  0.1047720  -2.466 0.013664 *  
+FRSTUSE16   -0.2655039  0.1150526  -2.308 0.021017 *  
+FRSTUSE17   -0.3294628  0.1116592  -2.951 0.003171 ** 
+IDU0        -0.0689713  0.0305319  -2.259 0.023884 *  
+IDU1        -0.1769383  0.0464837  -3.806 0.000141 ***
+COKEFLG1    -0.0174231  0.0482194  -0.361 0.717853    
+BENZFLG1     0.0169289  0.0744759   0.227 0.820185    
+PSYPROB1    -0.7443267  0.0388070 -19.180  &lt; 2e-16 ***
+PSYPROB2    -0.6670055  0.0382530 -17.437  &lt; 2e-16 ***
+HLTHINS1     0.3409820  0.0722846   4.717 2.39e-06 ***
+HLTHINS2    -0.3284289  0.0427850  -7.676 1.64e-14 ***
+HLTHINS3    -0.0961427  0.0654004  -1.470 0.141544    
+HLTHINS4    -0.1531667  0.0466771  -3.281 0.001033 ** 
+PRIMPAY1    -0.3290459  0.0787475  -4.178 2.93e-05 ***
+PRIMPAY2     0.1608681  0.0786858   2.044 0.040911 *  
+PRIMPAY3     0.1036419  0.1889325   0.549 0.583304    
+PRIMPAY4    -0.3963271  0.0393639 -10.068  &lt; 2e-16 ***
+PRIMPAY5    -0.2670510  0.0422106  -6.327 2.51e-10 ***
+PRIMPAY6    -0.9608750  0.1076104  -8.929  &lt; 2e-16 ***
+PRIMPAY7    -0.4421418  0.0685994  -6.445 1.15e-10 ***
+AGE2         0.0910656  0.3264483   0.279 0.780276    
+AGE3        -0.3397295  0.3213140  -1.057 0.290369    
+AGE4        -0.2246077  0.3150537  -0.713 0.475896    
+AGE5        -0.1861208  0.3138414  -0.593 0.553154    
+AGE6        -0.1300444  0.3137747  -0.414 0.678543    
+AGE7        -0.1188669  0.3138780  -0.379 0.704908    
+AGE8        -0.0832349  0.3140875  -0.265 0.791005    
+AGE9        -0.0508898  0.3139609  -0.162 0.871235    
+AGE10        0.0092565  0.3140013   0.029 0.976482    
+AGE11        0.0933774  0.3141290   0.297 0.766269    
+AGE12       -0.0629464  0.3201794  -0.197 0.844143    
+GENDER1      1.4464490  0.5933441   2.438 0.014777 *  
+GENDER2      1.4143587  0.5934495   2.383 0.017159 *  
+LIVARAG1     0.2971863  0.0770565   3.857 0.000115 ***
+LIVARAG2     0.2548338  0.0774322   3.291 0.000998 ***
+LIVARAG3     0.4346539  0.0761457   5.708 1.14e-08 ***
+DIVISION2   -0.0085476  0.0452370  -0.189 0.850131    
+DIVISION3   -1.1830980  0.0463270 -25.538  &lt; 2e-16 ***
+DIVISION4   -0.7237174  0.0485938 -14.893  &lt; 2e-16 ***
+DIVISION5   -1.1184273  0.0487644 -22.935  &lt; 2e-16 ***
+DIVISION6   -0.8088577  0.0610602 -13.247  &lt; 2e-16 ***
+DIVISION7   -0.2576851  0.0613591  -4.200 2.67e-05 ***
+DIVISION8    0.1068601  0.0582116   1.836 0.066399 .  
+DIVISION9   -0.2478699  0.0581953  -4.259 2.05e-05 ***
+METHUSE1    -0.1101376  0.0646294  -1.704 0.088355 .  
+METHUSE2    -0.0885410  0.0435905  -2.031 0.042235 *  
+NOPRIOR0    -0.8210617  0.0697376 -11.774  &lt; 2e-16 ***
+NOPRIOR1    -0.8367932  0.0685663 -12.204  &lt; 2e-16 ***
+EDUC1       -0.5182191  0.0838425  -6.181 6.38e-10 ***
+EDUC2       -0.3554040  0.0765513  -4.643 3.44e-06 ***
+EDUC3       -0.2614754  0.0746865  -3.501 0.000464 ***
+EDUC4       -0.2185499  0.0758156  -2.883 0.003943 ** 
+EDUC5       -0.1945182  0.0789381  -2.464 0.013732 *  
+HERFLG1      0.0801952  0.0707335   1.134 0.256893    
+RACE1       -0.2059673  0.1648535  -1.249 0.211520    
+RACE2       -0.0030630  0.1022439  -0.030 0.976101    
+RACE3        2.1169564  1.7149540   1.234 0.217050    
+RACE4       -0.0391569  0.0909978  -0.430 0.666973    
+RACE5        0.1055058  0.0883888   1.194 0.232613    
+RACE6        0.1773540  0.1442125   1.230 0.218768    
+RACE7        0.0134253  0.0936046   0.143 0.885954    
+RACE8       -0.0907469  0.0999137  -0.908 0.363745    
+RACE9       -0.2651592  0.1874638  -1.414 0.157228    
+MARSTAT1    -0.1125370  0.0504111  -2.232 0.025590 *  
+MARSTAT2    -0.0665011  0.0554545  -1.199 0.230449    
+MARSTAT3    -0.2049102  0.0601394  -3.407 0.000656 ***
+MARSTAT4    -0.1431133  0.0527115  -2.715 0.006627 ** 
+PRIMINC1     0.6957623  0.0456834  15.230  &lt; 2e-16 ***
+PRIMINC2     0.1129879  0.0521274   2.168 0.030194 *  
+PRIMINC3     0.0514214  0.0550404   0.934 0.350176    
+PRIMINC4     0.2163781  0.0459082   4.713 2.44e-06 ***
+PRIMINC5     0.2146170  0.0411573   5.215 1.84e-07 ***
+ETHNIC1     -0.0149182  0.0762723  -0.196 0.844930    
+ETHNIC2      0.1216274  0.0701486   1.734 0.082944 .  
+ETHNIC3      0.2451629  0.0741812   3.305 0.000950 ***
+ETHNIC4      0.0231188  0.0538068   0.430 0.667441    
+ETHNIC5      0.0006256  0.0822507   0.008 0.993932    
+ARRESTS_D0   2.9533211  0.0659392  44.789  &lt; 2e-16 ***
+ARRESTS_D1   2.3220331  0.0822303  28.238  &lt; 2e-16 ***
+ARRESTS_D2   2.5527857  0.1199659  21.279  &lt; 2e-16 ***
+SUB21        0.2756623  0.0598024   4.610 4.04e-06 ***
+SUB23        0.0753528  0.0767671   0.982 0.326308    
+SUB24        0.0735985  0.0621592   1.184 0.236400    
+SUB25       -0.0147872  0.0975385  -0.152 0.879499    
+SUB26        0.1724842  0.3171163   0.544 0.586500    
+SUB27        0.0608984  0.0739895   0.823 0.410469    
+SUB28        0.5411502  0.1781505   3.038 0.002385 ** 
+SUB29       -0.1876624  0.2217705  -0.846 0.397441    
+SUB210       0.0042178  0.0683359   0.062 0.950784    
+SUB211      -0.1609222  0.1401307  -1.148 0.250815    
+SUB212      -0.1065874  0.1747457  -0.610 0.541890    
+SUB213       0.0732900  0.1072714   0.683 0.494468    
+SUB214       0.0469080  0.5579719   0.084 0.933002    
+SUB215      -0.1372802  0.4107708  -0.334 0.738228    
+SUB216      -0.0662871  0.1750089  -0.379 0.704863    
+SUB217      -0.1331313  0.2994078  -0.445 0.656574    
+SUB218       0.2395931  0.2766430   0.866 0.386450    
+SUB219      -0.0545036  0.1063389  -0.513 0.608269    
+MEDEXP1      0.3088701  0.0342821   9.010  &lt; 2e-16 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 97176  on 71406  degrees of freedom
+Residual deviance: 82561  on 71295  degrees of freedom
+AIC: 82785
+
+Number of Fisher Scoring iterations: 5</code></pre>
+<pre class="r"><code>test_prob = predict(lg, newdata = teds_test, type = &quot;response&quot;)
+test_roc = roc(teds_test$COMPLETED ~ test_prob, plot = TRUE, print.auc = TRUE)</code></pre>
+<p><img src="figure/alc_completion_2017.Rmd/unnamed-chunk-5-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>For this experiment, our baseline AUC using logistic regression is 0.69.</p>
+</div>
+<div id="random-forest" class="section level2">
+<h2>Random forest</h2>
+<p>Next, we fit a random forest model to the same training data. We are just using the default parameterizations here; previous experimentation showed that there wasn’t much variance across parameters, so I’m comfortable doing this for these experiments.</p>
+<pre class="r"><code>rf &lt;- teds_rf(teds, myvars, response)</code></pre>
+<p>The <code>rf_cv</code> object returned includes 4 things: the model specification, the test performance, and the test predictions. First we look at the test performance:</p>
+<pre class="r"><code>rf$test_performance</code></pre>
+<pre><code># A tibble: 2 x 3
+  .metric  .estimator .estimate
+  &lt;chr&gt;    &lt;chr&gt;          &lt;dbl&gt;
+1 accuracy binary         0.728
+2 roc_auc  binary         0.776</code></pre>
+<p>In this case, we see that the AUC=0.742 on the test set, an improvement over the logistic regression. We can use the test predictions to generate the ROC curve:</p>
+<pre class="r"><code># plot roc cruve
+autoplot(roc_curve(rf$test_predictions, !!response, .pred_0))</code></pre>
+<p><img src="figure/alc_completion_2017.Rmd/unnamed-chunk-8-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>Finally, we compute and visualize the feature importances.</p>
+</div>
+<div id="feature-importance" class="section level2">
+<h2>Feature importance</h2>
+<pre class="r"><code>teds[,response] = as.factor(teds[[response]])
+final_model &lt;- fit(rf$model, teds)
+
+final_model %&gt;% 
+  pull_workflow_fit() %&gt;% 
+  vip()</code></pre>
+<p><img src="figure/alc_completion_2017.Rmd/unnamed-chunk-9-1.png" width="672" style="display: block; margin: auto;" /></p>
+<br>
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
+<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> Session information
+</button>
+</p>
+<div id="workflowr-sessioninfo" class="collapse">
+<pre class="r"><code>sessionInfo()</code></pre>
+<pre><code>R version 4.0.0 (2020-04-24)
+Platform: x86_64-apple-darwin17.0 (64-bit)
+Running under: macOS  10.16
+
+Matrix products: default
+BLAS:   /Library/Frameworks/R.framework/Versions/4.0/Resources/lib/libRblas.dylib
+LAPACK: /Library/Frameworks/R.framework/Versions/4.0/Resources/lib/libRlapack.dylib
+
+locale:
+[1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+ [1] gridExtra_2.3    reshape2_1.4.4   vip_0.2.2        pROC_1.16.2     
+ [5] yardstick_0.0.7  workflows_0.2.1  tune_0.1.1       rsample_0.0.8   
+ [9] recipes_0.1.14   parsnip_0.1.4    modeldata_0.1.0  infer_0.5.3     
+[13] dials_0.0.9      scales_1.1.1     broom_0.7.2      tidymodels_0.1.1
+[17] forcats_0.5.0    stringr_1.4.0    dplyr_1.0.2      purrr_0.3.4     
+[21] readr_1.3.1      tidyr_1.1.2      tibble_3.0.4     ggplot2_3.3.2   
+[25] tidyverse_1.3.0  workflowr_1.6.2 
+
+loaded via a namespace (and not attached):
+ [1] colorspace_1.4-1   ellipsis_0.3.1     class_7.3-16       rprojroot_1.3-2   
+ [5] fs_1.4.1           rstudioapi_0.11    listenv_0.8.0      furrr_0.2.1       
+ [9] farver_2.0.3       prodlim_2019.11.13 fansi_0.4.1        lubridate_1.7.8   
+[13] ranger_0.12.1      xml2_1.3.2         codetools_0.2-16   splines_4.0.0     
+[17] knitr_1.28         jsonlite_1.6.1     dbplyr_1.4.3       compiler_4.0.0    
+[21] httr_1.4.1         backports_1.1.8    assertthat_0.2.1   Matrix_1.2-18     
+[25] cli_2.0.2          later_1.1.0.1      htmltools_0.4.0    tools_4.0.0       
+[29] gtable_0.3.0       glue_1.4.1         Rcpp_1.0.4.6       cellranger_1.1.0  
+[33] DiceDesign_1.8-1   vctrs_0.3.4        iterators_1.0.12   timeDate_3043.102 
+[37] gower_0.2.1        xfun_0.13          globals_0.13.1     rvest_0.3.5       
+[41] lifecycle_0.2.0    future_1.19.1      MASS_7.3-51.5      ipred_0.9-9       
+[45] hms_0.5.3          promises_1.1.1     parallel_4.0.0     yaml_2.2.1        
+[49] rpart_4.1-15       stringi_1.4.6      foreach_1.5.0      lhs_1.0.2         
+[53] hardhat_0.1.4      lava_1.6.7         rlang_0.4.8        pkgconfig_2.0.3   
+[57] evaluate_0.14      lattice_0.20-41    labeling_0.3       tidyselect_1.1.0  
+[61] plyr_1.8.6         magrittr_1.5       R6_2.4.1           generics_0.0.2    
+[65] DBI_1.1.0          pillar_1.4.4       haven_2.2.0        withr_2.2.0       
+[69] survival_3.1-12    nnet_7.3-14        modelr_0.1.8       crayon_1.3.4      
+[73] utf8_1.1.4         rmarkdown_2.1      grid_4.0.0         readxl_1.3.1      
+[77] git2r_0.27.1       reprex_0.3.0       digest_0.6.25      httpuv_1.5.4      
+[81] GPfit_1.0-8        munsell_0.5.0     </code></pre>
+</div>
+</div>
+
+
+<!-- Adjust MathJax settings so that all math formulae are shown using
+TeX fonts only; see
+http://docs.mathjax.org/en/latest/configuration.html.  This will make
+the presentation more consistent at the cost of the webpage sometimes
+taking slightly longer to load. Note that this only works because the
+footer is added to webpages before the MathJax javascript. -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": { availableFonts: ["TeX"] }
+  });
+</script>
+
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

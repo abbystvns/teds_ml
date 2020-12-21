@@ -26,11 +26,14 @@ Refer to the [codebook](https://wwwdasis.samhsa.gov/dasis2/teds_pubs/TEDS/Discha
 
 ```{r read discharge dataset}
 mydata <- read.csv("data/tedsd_puf_2017.csv")
+medexp <- read.csv("data/medicaid_expansion.csv")
+# merge
+mydata <- merge(mydata, medexp, by='STFIPS')
 # filter
 mydata <- mydata %>% filter(SUB1 %in% c(5,6,7), SERVICES %in% c(4,5))
 mydata$COMPLETED = ifelse(mydata$REASON==1, 1, 0) #create response variable
 
-myvars <- c("ROUTE1", "ALCFLG", "FREQ1", "FRSTUSE1", "IDU","COKEFLG", "BENZFLG", "PSYPROB", "HLTHINS", "PRIMPAY", "AGE", "GENDER", "LIVARAG", "DIVISION", "METHUSE", "NOPRIOR", "EDUC", "HERFLG","RACE","MARSTAT","PRIMINC","ETHNIC","ARRESTS_D")
+myvars <- c("ROUTE1", "ALCFLG", "FREQ1", "FRSTUSE1", "IDU","COKEFLG", "BENZFLG", "PSYPROB", "HLTHINS", "PRIMPAY", "AGE", "GENDER", "LIVARAG", "DIVISION", "METHUSE", "NOPRIOR", "EDUC", "HERFLG","RACE","MARSTAT","PRIMINC","ETHNIC","ARRESTS_D", "SUB2", "MEDEXP")
 
 response = "COMPLETED"
 
