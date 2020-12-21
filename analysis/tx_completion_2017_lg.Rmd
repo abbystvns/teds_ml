@@ -16,6 +16,7 @@ library(reshape2)
 library(broom)
 library(pROC)
 library(vip)
+library(glmnet)
 source('code/teds_utils.R')
 ```
 
@@ -56,6 +57,49 @@ sbs_response_plots(mydata, c("substance"), response)
 ```
 
 Now, we loop through the substances, train the model, and keep track of the results.
+
+
+```{r}
+sub = 'Alcohol'
+teds0 <- mydata %>% filter(substance==sub)
+teds = teds0[, myvars]
+teds[, response] = teds0[, response]
+  
+# split
+teds_split = initial_split(teds, prop=3/4)
+# extract training and testing sets
+teds_train <- training(teds_split)
+teds_test <- testing(teds_split)
+  
+x_train = model.matrix(~ ., data=teds_train[,myvars], 
+             contrasts.arg = lapply(teds_train[,myvars], contrasts))
+y_train = teds_train$COMPLETED
+
+set.seed(123) 
+cv.lasso <- cv.glmnet(x_train, y_train, alpha = 1, family = "binomial")
+# Fit the final model on the training data
+model <- glmnet(x_train, y_train, alpha = 1, family = "binomial",
+                lambda = cv.lasso$lambda.1se)
+```
+
+
+
+
+```{r}
+x_test = model.matrix(~ ., data=teds_test[,myvars], 
+             contrasts.arg = lapply(teds_test[,myvars], contrasts))
+y_test = teds_test$COMPLETED
+
+# Display regression coefficients
+coef(model)
+# Make predictions on the test data
+#x.test <- model.matrix(diabetes ~., test.data)[,-1]
+probabilities <- model %>% predict(newx = x_test)
+predicted.classes <- ifelse(probabilities > 0.5, 1, 0)
+# Model accuracy
+observed.classes <- y_test
+mean(predicted.classes == observed.classes)
+```
 
 
 ```{r}

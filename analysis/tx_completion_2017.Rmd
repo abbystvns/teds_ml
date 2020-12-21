@@ -102,6 +102,10 @@ test_aucs
 Finally, we can compare variable importance across substances to see how they differ.
 
 ```{r}
+range01 <- function(x){(x-min(x))/(max(x)-min(x))}
+
+vidf[, c(2:6)] = lapply(vidf[, c(2:6)], range01)
+
 ggplot(melt(vidf), aes(x = variable, y = Variable, fill = value)) +
   geom_tile()
 ```
