@@ -1,0 +1,109 @@
+---
+title: "Random forest models of successful completion of residential substance treatment"
+author: "Abby Stevens"
+date: "2020-11-25"
+output: workflowr::wflow_html
+editor_options:
+  chunk_output_type: console
+---
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+knitr::opts_chunk$set(message = FALSE, warning = FALSE)
+
+library(tidyverse)
+library(tidymodels)
+library(reshape2)
+library(pROC)
+library(vip)
+source('code/teds_utils.R')
+```
+
+
+In this experiment, we are interested in the factors that determine whether or not a person completes residential treatment for 5 substances of interest: Opioids, Alcohol, Cocaine, Marijuana, and Methamphetamine. For each substance, we tune a random forest model and compute the test error/variable importances.
+
+```{r read discharge dataset}
+mydata <- read.csv("data/tedsd_puf_2017.csv")
+medexp <- read.csv("data/medicaid_expansion.csv")
+# merge
+mydata <- merge(mydata, medexp, by='STFIPS')
+
+# filter by residential treatment
+mydata <- mydata %>% filter(SERVICES %in% c(4,5))
+
+# create "substance" flag
+mydata$substance = 'Other'
+mydata$substance = ifelse(mydata$SUB1 %in% c(5,6,7), 'Opioids', mydata$substance)
+mydata$substance = ifelse(mydata$SUB1 == 2, 'Alcohol', mydata$substance)
+mydata$substance = ifelse(mydata$SUB1 == 3, 'Cocaine', mydata$substance)
+mydata$substance = ifelse(mydata$SUB1 == 4, 'Marijuana', mydata$substance)
+mydata$substance = ifelse(mydata$SUB1 == 10, 'Methamphetamine', mydata$substance)
+
+# define variables
+myvars <- c("ROUTE1", "ALCFLG", "FREQ1", "FRSTUSE1", "IDU","COKEFLG", "BENZFLG", "PSYPROB", "HLTHINS", "PRIMPAY", "AGE", "GENDER", "LIVARAG", "DIVISION", "METHUSE", "NOPRIOR", "EDUC", "HERFLG","RACE","MARSTAT","PRIMINC","ETHNIC","ARRESTS_D", "MEDEXP", "SUB2")
+
+# create response
+mydata$COMPLETED = ifelse(mydata$REASON==1, 1, 0) #create response variable
+mydata[myvars] <- as.data.frame(lapply(mydata[myvars], factor))
+
+response = "COMPLETED"
+```
+
+We can observe the overall completion rates for the different substances:
+
+```{r}
+sbs_response_plots(mydata, c("substance"), response)
+```
+
+Now, we loop through the substances, train the model, and keep track of the results.
+
+
+```{r}
+set.seed(123) #for replicability
+test_aucs = list()
+
+for (sub in c("Alcohol", "Cocaine", "Marijuana", "Methamphetamine", "Opioids")){
+  print(sub)
+  teds0 <- mydata %>% filter(substance==sub)
+  teds = teds0[, myvars]
+  teds[, response] = teds0[, response]
+  
+  # split
+  teds_split = initial_split(teds, prop=3/4)
+  # extract training and testing sets
+  teds_train <- training(teds_split)
+  teds_test <- testing(teds_split)
+  
+  # fit rf
+  rf <- teds_rf(teds, myvars, response)
+  test_aucs[sub] = rf$test_performance$.estimate[2]
+  
+  # variable importances
+  teds[,response] = as.factor(teds[[response]])
+  final_model <- fit(rf$model, teds)
+  t = final_model %>% 
+        pull_workflow_fit() %>% 
+        vi()
+  colnames(t) = c("Variable", sub)
+     
+  if(sub != 'Alcohol'){
+     vidf = merge(vidf, t, by='Variable')
+  } else{
+    vidf = t
+  }
+}
+```
+
+First we take a look at the test AUCs for the different substances and see that for all substnaces it is between .75 and .8.
+```{r}
+test_aucs
+```
+
+
+Finally, we can compare variable importance across substances to see how they differ.
+
+```{r}
+ggplot(melt(vidf), aes(x = variable, y = Variable, fill = value)) +
+  geom_tile()
+```
+
+
